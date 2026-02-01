@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>ZegaMachine ZM Series • ZM‑1‑1010</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="ZegaMachine ZM series by Z‑MEGA. Integrated ZEGA CPU, Z‑MEGA GPU, VRAM‑only memory, and ZLLKX99K unified compute socket." />
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    /* Brand Colors */
+    --accent: #58f01b;
+    --accent-glow: rgba(88, 240, 27, 0.45);
+    --accent-soft: rgba(88, 240, 27, 0.12);
+
+    /* Background Layers */
+    --bg: #080b12;
+    --bg-gradient-top: #1b2438;
+    --bg-panel: #0f131d;
+    --bg-panel-soft: #141a27;
+    --bg-soft: #161c29;
+
+    /* Text */
+    --text: #e8ecf7;
+    --text-muted: #9aa3b8;
+    --text-dim: #6f7890;
+
+    /* Borders & Radii */
+    --border: rgba(255, 255, 255, 0.06);
+    --border-strong: rgba(255, 255, 255, 0.12);
+    --radius: 16px;
+    --radius-sm: 10px;
+
+    /* Shadows */
+    --shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
+    --shadow-soft: 0 10px 24px rgba(0, 0, 0, 0.35);
+
+    /* Layout */
+    --max-width: 1180px;
+    --nav-height: 64px;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: "Inter", sans-serif;
+    background: radial-gradient(circle at top, var(--bg-gradient-top) 0%, var(--bg) 70%);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.55;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+    transition: 0.2s ease;
+  }
+
+  header {
+    position: sticky;
+    top: 0;
+    height: var(--nav-height);
+    backdrop-filter: blur(18px);
+    background: rgba(8, 11, 18, 0.85);
+    border-bottom: 1px solid var(--border);
+    z-index: 20;
+  }
+
+  .nav {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 22px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .brand-mark {
+    width: 36px;
+    height: 36px;
+    border-radius: 14px;
+    background: radial-gradient(circle at 30% 20%, #caff9a, var(--accent) 45%, #1b7921 85%);
+    box-shadow: 0 0 22px var(--accent-glow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    color: #0b0e14;
+    font-size: 18px;
+  }
+
+  .brand-text-main {
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    font-size: 14px;
+  }
+
+  .brand-text-sub {
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 26px;
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  .nav-links a:hover {
+    color: var(--accent);
+  }
+
+  .shell {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 48px 22px 90px;
+  }
+
+  /* HERO */
+  .hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    gap: 40px;
+    align-items: center;
+    margin-top: 28px;
+  }
+
+  .hero-kicker {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+  }
+
+  .hero-title {
+    font-size: clamp(32px, 4vw, 46px);
+    font-weight: 800;
+    line-height: 1.08;
+    margin-bottom: 12px;
+  }
+
+  .hero-highlight {
+    color: var(--accent);
+    text-shadow: 0 0 12px var(--accent-glow);
+  }
+
+  .hero-sub {
+    font-size: 16px;
+    color: var(--text-muted);
+    max-width: 540px;
+    margin-bottom: 20px;
+  }
+
+  .hero-meta {
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+
+  /* BADGES */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    border: 1px solid rgba(88, 240, 27, 0.45);
+    color: var(--accent);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  /* PANELS */
+  .panel {
+    background: var(--bg-panel);
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    padding: 20px;
+    box-shadow: var(--shadow);
+    font-size: 13px;
+  }
+
+  .panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    color: var(--text-muted);
+  }
+
+  .panel-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .panel-item {
+    background: var(--bg-panel-soft);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+    padding: 12px;
+  }
+
+  .panel-item-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--text-dim);
+    margin-bottom: 4px;
+  }
+
+  .panel-item-value {
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  /* SECTIONS */
+  .section {
+    margin-top: 60px;
+  }
+
+  .section-title {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .section-sub {
+    font-size: 15px;
+    color: var(--text-muted);
+    margin-bottom: 22px;
+    max-width: 600px;
+  }
+
+  .grid {
+    display: grid;
+    gap: 18px;
+  }
+
+  .grid-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .grid-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  /* CARDS */
+  .card {
+    background: var(--bg-panel);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    padding: 20px;
+    box-shadow: var(--shadow-soft);
+    font-size: 14px;
+  }
+
+  .card-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .card-body {
+    color: var(--text-muted);
+  }
+
+  .spec {
+    margin-top: 12px;
+    padding: 12px;
+    background: var(--bg-soft);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+    font-size: 13px;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    margin-top: 70px;
+    padding-top: 20px;
+    font-size: 13px;
+    color: var(--text-muted);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 16px;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .hero {
+      grid-template-columns: 1fr;
+    }
+    .grid-3 {
+      grid-template-columns: 1fr;
+    }
+    .grid-2 {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .nav-links {
+      display: none;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="brand">
+      <div class="brand-mark">Z</div>
+      <div>
+        <div class="brand-text-main">Z‑MEGA</div>
+        <div class="brand-text-sub">ZegaMachine ZM series</div>
+      </div>
+    </div>
+
+    <nav class="nav-links">
+      <a href="#overview">Overview</a>
+      <a href="#architecture">Architecture</a>
+      <a href="#socket">ZLLKX99K</a>
+    </nav>
+  </div>
+</header>
+
+<div class="shell">
+
+  <!-- HERO -->
+  <section class="hero" id="overview">
+    <div>
+      <div class="badge">ZM‑1‑1010 • ZegaMachine</div>
+      <div class="hero-kicker">Integrated ZEGA CPU • Z‑MEGA GPU • VRAM‑only</div>
+
+      <h1 class="hero-title">
+        A machine where <span class="hero-highlight">VRAM replaces everything</span>.
+      </h1>
+
+      <p class="hero-sub">
+        ZegaMachine ZM‑1‑1010 is the first fully integrated system from Z‑MEGA, combining a ZEGA‑designed CPU, 
+        a modified ZT‑8‑150 Pro GPU with 128&nbsp;GB of VRAM, 4&nbsp;TB of ZegaCache, and the ZLLKX99K unified compute socket. 
+        The entire platform runs on a VRAM‑only memory model.
+      </p>
+
+      <p class="hero-meta">
+        Built for AI, simulation, rendering, and next‑generation ZOS development inside the ZEGA ecosystem.
+      </p>
+    </div>
+
+    <aside class="panel">
+      <div class="panel-header">
+        <span>ZM‑1‑1010 key snapshot</span>
+        <span style="font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.16em;">VRAM‑only</span>
+      </div>
+      <div class="panel-grid">
+        <div class="panel-item">
+          <div class="panel-item-label">CPU</div>
+          <div class="panel-item-value">Z‑9‑1150 Pro (ZEGA)</div>
+        </div>
+        <div class="panel-item">
+          <div class="panel-item-label">GPU</div>
+          <div class="panel-item-value">Modified ZT‑8‑150 Pro</div>
+        </div>
+        <div class="panel-item">
+          <div class="panel-item-label">Total VRAM</div>
+          <div class="panel-item-value">128 GB (VRAM‑only system)</div>
+        </div>
+        <div class="panel-item">
+          <div class="panel-item-label">System memory</div>
+          <div class="panel-item-value">≈ 89.6 GB (70% of VRAM)</div>
+        </div>
+        <div class="panel-item">
+          <div class="panel-item-label">ZegaCache</div>
+          <div class="panel-item-value">4 TB unified cache</div>
+        </div>
+        <div class="panel-item">
+          <div class="panel-item-label">Socket</div>
+          <div class="panel-item-value">ZLLKX99K unified compute</div>
+        </div>
+      </div>
+    </aside>
+  </section>
+
+  <!-- ARCHITECTURE -->
+  <section class="section" id="architecture">
+    <h2 class="section-title">ZM‑1‑1010 architecture</h2>
+    <p class="section-sub">
+      The ZM‑1‑1010 is built around a VRAM‑only memory model. Z‑MEGA hardware and ZEGA processors work together 
+      through the ZLLKX99K unified compute socket, with VRAM replacing traditional RAM completely.
+    </p>
+
+    <div class="grid grid-3">
+      <article class="card">
+        <div class="card-title">Z‑9‑1150 Pro CPU</div>
+        <div class="card-body">
+          ZEGA‑designed CPU optimized for VRAM‑only systems.  
+          No RAM controller, direct access to GPU VRAM and ZegaCache through ZLLKX99K, and tuned for ZOS workloads.
+          <div class="spec">
+            Vendor: ZEGA<br>
+            Role: VRAM‑native compute<br>
+            Memory: Direct VRAM access via ZLLKX99K<br>
+            Use: AI logic, scheduling, system tasks
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-title">Modified ZT‑8‑150 Pro GPU</div>
+        <div class="card-body">
+          Z‑MEGA flagship GPU adapted for ZegaMachine.  
+          Features triple ZT‑6‑150 Pro cores and 128&nbsp;GB of VRAM, with roughly 70% used as system memory and 30% dedicated to GPU compute.
+          <div class="spec">
+            VRAM: 128 GB total<br>
+            System Memory: ≈ 89.6 GB<br>
+            Compute Memory: ≈ 38.4 GB<br>
+            Tech: RealTracing, ZegaUpscalingUltimateUsingWifi‑v2.1
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-title">4 TB ZegaCache</div>
+        <div class="card-body">
+          A 4&nbsp;TB persistent cache layer sitting between VRAM and storage.  
+          Stores AI models, simulation states, game worlds, and ZOS snapshots for near‑instant recall.
+          <div class="spec">
+            Capacity: 4 TB<br>
+            Role: Unified cache layer<br>
+            Scope: Assets, models, system states<br>
+            Benefit: Minimal loading and warm‑up times
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- SOCKET -->
+  <section class="section" id="socket">
+    <h2 class="section-title">ZLLKX99K unified compute socket</h2>
+    <p class="section-sub">
+      ZLLKX99K is the connector that makes ZegaMachine possible: a self‑cooling, PCIe‑shaped unified compute socket 
+      that carries CPU, GPU, VRAM fabric, cache channels, and thermal paths in one fragile but precise interface.
+    </p>
+
+    <div class="grid grid-2">
+      <article class="card">
+        <div class="card-title">Unified CPU + GPU + memory bus</div>
+        <div class="card-body">
+          ZLLKX99K combines the roles of a CPU socket and a PCIe slot into a single connector.  
+          ZEGA CPUs like the Z‑9‑1150 Pro and Z‑MEGA GPUs like the modified ZT‑8‑150 Pro both plug into it, 
+          sharing VRAM, ZegaCache, and compute resources through one unified fabric.
+          <div class="spec">
+            Form factor: PCIe‑like<br>
+            Roles: CPU socket + GPU slot + memory fabric<br>
+            Devices: ZEGA CPUs, Z‑MEGA GPUs, hybrid modules
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-title">Self‑cooling but structurally fragile</div>
+        <div class="card-body">
+          The socket integrates vapor micro‑chambers and thermal substrates that help cool the CPU and GPU from the connector itself.  
+          Internally, it uses ultra‑thin structural plates measuring just 0.3&nbsp;mm in length and 2&nbsp;nm in thickness, 
+          enabling high density but making the socket extremely fragile.
+          <div class="spec">
+            Structural plates: 0.3 mm long, 2 nm thick<br>
+            Cooling: Integrated self‑cooling design<br>
+            Constraint: Requires reinforced bracing and precise installation
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <div class="card" style="margin-top:16px;">
+      <div class="card-title">Reinforced bracing system</div>
+      <div class="card-body">
+        Because of the thin 0.3&nbsp;mm / 2&nbsp;nm plates and the weight of high‑end modules, ZLLKX99K cannot support 
+        mechanical load on its own. ZegaMachine platforms use a reinforced bracing assembly with dual‑rail supports, 
+        vertical load posts, anti‑twist bars, and thermal alignment clamps to protect the socket and stabilize heavy compute modules.
+      </div>
+    </div>
+  </section>
+
+  <!-- SUMMARY -->
+  <section class="section" id="summary">
+    <h2 class="section-title">What ZM‑1‑1010 is for</h2>
+    <p class="section-sub">
+      ZegaMachine ZM‑1‑1010 is designed as a flagship platform for workloads that need unified memory, huge VRAM, and 
+      tightly integrated CPU/GPU cooperation under ZOS.
+    </p>
+
+    <div class="grid grid-3">
+      <article class="card">
+        <div class="card-title">AI and simulation</div>
+        <div class="card-body">
+          Large AI models and multi‑step simulations benefit from 128&nbsp;GB of VRAM, 4&nbsp;TB ZegaCache, 
+          and direct CPU↔GPU memory sharing with no RAM bottlenecks.
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-title">Rendering and creation</div>
+        <div class="card-body">
+          Massive scenes, textures, and timelines stay memory‑resident.  
+          Z‑MEGA’s memory‑first design allows ZOS tools to push GPU resources without worrying about RAM limits.
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-title">ZOS and ZEGA development</div>
+        <div class="card-body">
+          ZM‑1‑1010 is the reference platform for building VRAM‑only software.  
+          It showcases how ZEGA CPUs, Z‑MEGA GPUs, and ZLLKX99K can operate as a single compute unit.
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <footer>
+    <div>© <span id="year"></span> Z‑MEGA • ZegaMachine ZM series</div>
+    <div class="footer-links">
+      <a href="#overview">Overview</a>
+      <a href="#architecture">Architecture</a>
+      <a href="#socket">ZLLKX99K</a>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>

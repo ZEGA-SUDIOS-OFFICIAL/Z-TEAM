@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Z‑MEGA • Memory‑First Graphics Hardware</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Z‑MEGA designs memory-first GPUs that replace traditional RAM. VRAM powers the entire ZEGA + ZOS ecosystem." />
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --accent: #58f01b;
+      --accent-soft: rgba(88, 240, 27, 0.12);
+      --bg: #0b0e14;
+      --bg-panel: #11151f;
+      --bg-soft: #161b27;
+      --text: #e8ecf7;
+      --text-muted: #9aa3b8;
+      --radius: 14px;
+      --radius-sm: 10px;
+      --shadow: 0 14px 32px rgba(0,0,0,0.55);
+      --border: rgba(255,255,255,0.06);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Inter", sans-serif;
+      background: radial-gradient(circle at top, #1a2235 0%, #0b0e14 60%);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(14px);
+      background: rgba(11,14,20,0.9);
+      border-bottom: 1px solid var(--border);
+      z-index: 20;
+    }
+
+    .nav {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-mark {
+      width: 32px;
+      height: 32px;
+      border-radius: 12px;
+      background: radial-gradient(circle at 30% 20%, #b6ff87, #58f01b 40%, #1b7921 80%);
+      box-shadow: 0 0 18px rgba(88,240,27,0.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      color: #0b0e14;
+      font-size: 17px;
+    }
+
+    .brand-text-main {
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      font-size: 13px;
+    }
+
+    .brand-text-sub {
+      font-size: 11px;
+      color: var(--text-muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    .btn {
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 500;
+      transition: 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #0b0e14;
+      box-shadow: 0 0 18px rgba(88,240,27,0.4);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 0 26px rgba(88,240,27,0.55);
+    }
+
+    .btn-ghost {
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+    }
+
+    .btn-ghost:hover {
+      color: var(--text);
+      border-color: rgba(88,240,27,0.5);
+    }
+
+    .shell {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 40px 18px 80px;
+    }
+
+    /* HERO */
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 36px;
+      align-items: center;
+      margin-top: 24px;
+    }
+
+    .hero-kicker {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .hero-title {
+      font-size: clamp(32px, 4vw, 44px);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 14px;
+    }
+
+    .hero-highlight {
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      font-size: 15px;
+      color: var(--text-muted);
+      max-width: 520px;
+      margin-bottom: 22px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    /* PANEL */
+
+    .panel {
+      background: var(--bg-panel);
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      padding: 18px 18px 16px;
+      box-shadow: var(--shadow);
+    }
+
+    .panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .panel-tag {
+      font-size: 11px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(88,240,27,0.5);
+      background: var(--accent-soft);
+      color: var(--accent);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .panel-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .panel-item {
+      background: var(--bg-soft);
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      padding: 10px 11px;
+      font-size: 12px;
+    }
+
+    .panel-item-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #7a83a4;
+      margin-bottom: 4px;
+    }
+
+    .panel-item-value {
+      font-weight: 500;
+    }
+
+    /* SECTIONS */
+
+    .section {
+      margin-top: 56px;
+    }
+
+    .section-header {
+      margin-bottom: 18px;
+    }
+
+    .section-title {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .section-sub {
+      font-size: 14px;
+      color: var(--text-muted);
+      max-width: 520px;
+    }
+
+    .grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .grid-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .card {
+      background: var(--bg-panel);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      padding: 18px;
+      box-shadow: var(--shadow);
+      font-size: 13px;
+    }
+
+    .card-title {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .card-body {
+      color: var(--text-muted);
+    }
+
+    /* FOOTER */
+
+    footer {
+      border-top: 1px solid var(--border);
+      margin-top: 60px;
+      padding-top: 18px;
+      font-size: 12px;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 14px;
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 700px) {
+      .nav-links {
+        display: none;
+      }
+      .grid-3 {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .grid-2 {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="brand">
+      <div class="brand-mark">Z</div>
+      <div>
+        <div class="brand-text-main">Z‑MEGA</div>
+        <div class="brand-text-sub">memory‑first graphics hardware</div>
+      </div>
+    </div>
+
+    <nav class="nav-links">
+      <a href="#architecture">Architecture</a>
+      <a href="#zt-series">ZT series</a>
+      <a href="#downloads">Downloads</a>
+    </nav>
+
+    <button class="btn btn-primary">Contact</button>
+  </div>
+</header>
+
+<div class="shell">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div>
+      <div class="hero-kicker">Z‑MEGA • MEMORY-FIRST GPUS</div>
+
+      <h1 class="hero-title">
+        GPUs where <span class="hero-highlight">VRAM replaces RAM</span>.
+      </h1>
+
+      <p class="hero-sub">
+        Z‑MEGA designs memory‑first graphics hardware for the ZEGA ecosystem.  
+        About 70% of GPU VRAM is treated as system memory, replacing traditional RAM entirely — faster, larger, and simpler.
+      </p>
+
+      <div class="hero-actions">
+        <button class="btn btn-primary">View ZT series</button>
+        <button class="btn btn-ghost">Driver downloads</button>
+      </div>
+    </div>
+
+    <aside class="panel">
+      <div class="panel-header">
+        <span>Unified VRAM snapshot</span>
+        <span class="panel-tag">VRAM‑only</span>
+      </div>
+
+      <div class="panel-grid">
+        <div class="panel-item">
+          <div class="panel-item-label">Memory model</div>
+          <div class="panel-item-value">VRAM = system memory</div>
+        </div>
+        <div class="panel-item">
+          <div class="panel-item-label">System share</div>
+          <div class="panel-item-value">≈ 70% of VRAM</div>
+        </div>
+        <div class="panel-item">
+          <div class="panel-item-label">Tech</div>
+          <div class="panel-item-value">RealTracing, ZegaUpscalingUltimateUsingWifi‑v2.1</div>
+        </div>
+        <div class="panel-item">
+          <div class="panel-item-label">Process</div>
+          <div class="panel-item-value">17.3 nm, 137B unified processors</div>
+        </div>
+      </div>
+    </aside>
+  </section>
+
+  <!-- ARCHITECTURE -->
+  <section class="section" id="architecture">
+    <div class="section-header">
+      <h2 class="section-title">Unified VRAM architecture</h2>
+      <p class="section-sub">
+        Z‑MEGA GPUs are designed so VRAM powers everything: ZOS, ZEGA tools, and GPU compute. No traditional RAM required.
+      </p>
+    </div>
+
+    <div class="grid grid-3">
+      <article class="card">
+        <div class="card-title">VRAM as system memory</div>
+        <div class="card-body">
+          Around 70% of VRAM is allocated as system memory for ZOS and ZEGA applications.  
+          This replaces RAM entirely, simplifying system design and reducing bottlenecks.
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-title">Memory‑first design</div>
+        <div class="card-body">
+          Performance scales primarily with VRAM capacity and bandwidth.  
+          Large scenes, AI models, and simulation datasets stay resident in memory.
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-title">Built for ZEGA + ZOS</div>
+        <div class="card-body">
+          Z‑MEGA hardware is tuned specifically for ZEGA’s VRAM‑native tools and the ZOS operating system.
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!--GPUs-->
+<section class="section">
+  <h2 class="section-title">GPUs</h2>
+  <p class="section-sub">
+    Explore the full Z‑MEGA graphics ecosystem — from consumer ZT‑series GPUs to RTU‑class slabs and catastrophic‑tier DESTROYER reactors.
+  </p>
+
+  <div class="grid grid-2">
+
+    <article class="card">
+      <div class="card-title">ZT‑Series (Consumer GPUs)</div>
+      <div class="card-body">
+        The official Z‑MEGA consumer and professional GPU lineup.
+        <div class="spec">
+          <a href="gpu/zt.html">ZT‑2</a><br>
+          <a href="gpu/zt.html">ZT‑4</a><br>
+          <a href="gpu/zt.html">ZT‑6</a><br>
+          <a href="gpu/zt.html">ZT‑8</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-title">Prototype Hardware</div>
+      <div class="card-body">
+        Internal experimental GPUs under evaluation.
+        <div class="spec">
+          <a href="gpu/prerelease.html#prototypes">ZT‑8‑200 Prototype</a><br>
+        </div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-title">RTU‑Class Hardware</div>
+      <div class="card-body">
+        Facility‑grade experimental compute slabs.
+        <div class="spec">
+          <a href="gpu/prerelease.html#rtu">RTU‑11090ZTZ</a><br>
+          <a href="gpu/prerelease.html#rtu">RTU‑DESTROYER Classification</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-title">DESTROYER‑Class Reactors</div>
+      <div class="card-body">
+        Catastrophic‑tier tensor reactors for planetary‑scale compute.
+        <div class="spec">
+          <a href="gpu/prerelease.html#destroyer">RTU‑DESTROYER‑100K</a><br>
+        </div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-title">Prerelease Lab</div>
+      <div class="card-body">
+        Full internal documentation for prototypes, RTU slabs, and DESTROYER‑class hardware.
+        <div class="spec">
+          <a href="gpu/prerelease.html">Open Prerelease Lab</a>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+  <!-- DOWNLOADS -->
+  <section class="section" id="downloads">
+    <div class="section-header">
+      <h2 class="section-title">Drivers and tools</h2>
+      <p class="section-sub">
+        Z‑MEGA provides drivers and utilities optimized for VRAM‑only ZEGA systems and the ZOS operating system.
+      </p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Available downloads</div>
+      <div class="card-body">
+        • ZOS GPU driver (VRAM‑only mode)  
+        • Developer tools and profiling utilities  
+        • Firmware and stability updates  
+        <br><br>
+        Download links will be added here when they are ready.
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div>© <span id="year"></span> Z‑MEGA • Memory‑first graphics hardware division of Z‑TEAM</div>
+    <div class="footer-links">
+      <a href="#architecture">Architecture</a>
+      <a href="#zt-series">ZT series</a>
+      <a href="#downloads">Downloads</a>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>

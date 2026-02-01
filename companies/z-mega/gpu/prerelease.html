@@ -1,0 +1,376 @@
+<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8" /> <title>Z‑MEGA GPU • Prerelease Lab</title> <meta name="viewport" content="width=device-width, initial-scale=1" /> <meta name="description" content="Z‑MEGA prerelease GPU prototypes, RTU hardware, and catastrophic‑tier DESTROYER compute reactors." />
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style> :root { --accent: #58f01b; --accent-soft: rgba(88, 240, 27, 0.12); --accent-glow: rgba(88, 240, 27, 0.45);
+
+  --bg: #080b12;
+  --bg-panel: #0f131d;
+  --bg-soft: #161c29;
+
+  --text: #e8ecf7;
+  --text-muted: #9aa3b8;
+
+  --border: rgba(255,255,255,0.06);
+  --radius: 16px;
+  --radius-sm: 10px;
+
+  --shadow: 0 18px 40px rgba(0,0,0,0.55);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: "Inter", sans-serif;
+  background: radial-gradient(circle at top, #1b2438 0%, var(--bg) 70%);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.55;
+}
+
+a { color: inherit; text-decoration: none; transition: 0.2s ease; }
+
+header {
+  position: sticky;
+  top: 0;
+  backdrop-filter: blur(18px);
+  background: rgba(8, 11, 18, 0.85);
+  border-bottom: 1px solid var(--border);
+  z-index: 20;
+}
+
+.nav {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-mark {
+  width: 36px;
+  height: 36px;
+  border-radius: 14px;
+  background: radial-gradient(circle at 30% 20%, #caff9a, var(--accent) 45%, #1b7921 85%);
+  box-shadow: 0 0 22px var(--accent-glow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  color: #0b0e14;
+  font-size: 18px;
+}
+
+.brand-text-main { font-weight: 700; letter-spacing: 0.09em; font-size: 14px; }
+.brand-text-sub { font-size: 11px; color: var(--text-muted); letter-spacing: 0.14em; text-transform: uppercase; }
+
+.nav-links { display: flex; gap: 22px; font-size: 13px; color: var(--text-muted); }
+.nav-links a:hover { color: var(--accent); }
+
+.shell { max-width: 1120px; margin: 0 auto; padding: 48px 20px 90px; }
+
+.banner {
+  background: var(--accent-soft);
+  border: 1px solid rgba(88,240,27,0.4);
+  color: var(--accent);
+  padding: 14px 18px;
+  border-radius: var(--radius);
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.section { margin-top: 60px; }
+.section-title { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+.section-sub { font-size: 15px; color: var(--text-muted); margin-bottom: 22px; max-width: 640px; }
+
+.grid { display: grid; gap: 18px; }
+.grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+.card {
+  background: var(--bg-panel);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  padding: 20px;
+  box-shadow: var(--shadow);
+  font-size: 14px;
+}
+
+.card-title { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+.card-body { color: var(--text-muted); }
+
+.spec {
+  margin-top: 12px;
+  padding: 12px;
+  background: var(--bg-soft);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  font-size: 13px;
+}
+
+footer {
+  border-top: 1px solid var(--border);
+  margin-top: 70px;
+  padding-top: 20px;
+  font-size: 13px;
+  color: var(--text-muted);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+@media (max-width: 900px) {
+  .grid-3, .grid-2 { grid-template-columns: 1fr; }
+}
+
+</style> </head>
+
+<body>
+
+<header> <div class="nav"> <div class="brand"> <div class="brand-mark">Z</div> <div> <div class="brand-text-main">Z‑MEGA</div> <div class="brand-text-sub">GPU Prerelease Lab</div> </div> </div>
+
+<nav class="nav-links">
+  <a href="#prototypes">Prototypes</a>
+  <a href="#rtu">RTU Hardware</a>
+  <a href="#destroyer">DESTROYER</a>
+  <a href="#architecture">Architecture</a>
+  <a href="#roadmap">Roadmap</a>
+</nav>
+
+</div> </header>
+
+<div class="shell">
+
+<div class="banner">Internal Engineering Access Only • Prerelease & RTU Hardware</div>
+
+<!-- PROTOTYPES --> <section id="prototypes" class="section"> <h2 class="section-title">Prototype GPUs</h2> <p class="section-sub"> Early Z‑MEGA GPU designs under evaluation. Specifications are fluid and not representative of any final retail hardware. </p>
+
+<div class="grid grid-2">
+
+  <article class="card">
+    <div class="card-title">ZT‑8‑200 Prototype</div>
+    <div class="card-body">
+      High‑end ZT‑8 family prototype exploring next‑generation VRAM‑only compute, improved memory efficiency, and tighter ZOS integration for workstation‑class workloads.
+      <div class="spec">
+        Series: ZT‑8 (Prototype Extension)<br>
+        VRAM: 32 GB (GDDR / VRAM‑only model)<br>
+        System Memory Allocation: VRAM‑backed under ZOS<br>
+        Target Power: 320 W<br>
+        Socket: ZLLKX99K<br>
+        Form Factor: Dual‑slot GPU card<br>
+        Status: Internal prototype, not for release
+      </div>
+    </div>
+  </article>
+
+  <article class="card">
+    <div class="card-title">ZT‑Series Context</div>
+    <div class="card-body">
+      The ZT‑2, ZT‑4, ZT‑6, and ZT‑8 lines define the official Z‑MEGA consumer and professional GPU naming scheme. Prototypes such as ZT‑8‑200 extend these families without introducing new series numbers.
+      <div class="spec">
+        Canon Series: ZT‑2, ZT‑4, ZT‑6, ZT‑8<br>
+        Non‑Canon: ZT‑9, ZT‑9‑190, ZT‑X (not used)<br>
+        Architecture: VRAM‑only design with ZOS integration<br>
+        Availability: Production models only on main GPU pages
+      </div>
+    </div>
+  </article>
+
+</div>
+
+</section>
+
+<!-- RTU HARDWARE --> <section id="rtu" class="section"> <h2 class="section-title">RTU‑Class Hardware</h2> <p class="section-sub"> RTU (Research Test Unit) GPUs are unstable, facility‑grade boards used for internal experiments only. These devices are not certifiable or shippable. </p>
+
+<div class="grid grid-2">
+
+  <article class="card">
+    <div class="card-title">RTU‑11090ZTZ</div>
+    <div class="card-body">
+      Industrial‑scale RTU‑class GPU featuring 30 compute dies, 10 TB of HBM2 VRAM, and a massive compute slab form factor.
+      Equipped with dual water‑cooling loops and 224 mm fans spinning at 12000 RPM across both front and back edges.
+      <div class="spec">
+        Class: RTU (Research Test Unit)<br>
+        GPU Modules: 30<br>
+        Total VRAM: 10 TB HBM2<br>
+        System Memory: 1 TB (10%)<br>
+        Dev/Compute Memory: 9 TB (90%)<br>
+        Height: 224 mm<br>
+        Length: 1.3 m (≈ 12× PCIe x16)<br>
+        Width: 5.0 m<br>
+        Fans: 224 mm @ 12000 RPM (front + back rows)<br>
+        Cooling: Dual water loops + vapor‑plate socket cooling<br>
+        Power Draw: ~50 kW<br>
+        Socket: ZLLKX99K (reinforced bracing)<br>
+        Expected Price: $120,000 – $180,000<br>
+        Status: Internal RTU hardware only
+      </div>
+    </div>
+  </article>
+
+  <article class="card">
+    <div class="card-title">RTU‑DESTROYER Classification</div>
+    <div class="card-body">
+      RTU‑DESTROYER is the highest Z‑MEGA experimental hardware tier, reserved for compute units that exceed 50 kW of power draw,
+      contain multi‑terabyte VRAM arrays, and deliver tensor throughput surpassing entire cloud infrastructures.
+      <div class="spec">
+        Power: 50 kW+<br>
+        VRAM: 10 TB+<br>
+        GPU Modules: 30+<br>
+        Cooling: Industrial (224 mm @ 12000 RPM + dual water loops)<br>
+        Socket: ZLLKX99K‑D (DESTROYER‑grade)<br>
+        Status: Internal catastrophic‑tier classification
+      </div>
+    </div>
+  </article>
+
+</div>
+
+</section>
+
+<!-- DESTROYER UNIT --> <section id="destroyer" class="section"> <h2 class="section-title">RTU‑DESTROYER‑100K Tensor Reactor</h2> <p class="section-sub"> The apex of Z‑MEGA compute: a catastrophic‑tier tensor reactor that collapses entire datacenter fleets into a single logical device. RTU‑DESTROYER‑100K is not a product; it is a facility‑scale compute asset. </p>
+
+<div class="grid grid-2">
+
+  <article class="card">
+    <div class="card-title">RTU‑DESTROYER‑100K</div>
+    <div class="card-body">
+      DESTROYER‑class tensor reactor containing 100,000 GPU compute dies, 10 TB of HBM2 VRAM, and 1 PB of DDR8 system memory.
+      Physically equivalent to one hundred RTU‑11090ZTZ units arranged into a single compute slab, it delivers exa‑scale tensor performance under ZOS.
+      <div class="spec">
+        Class: RTU‑DESTROYER<br>
+        Compute Power: 34,688,043× RTU‑11090ZTZ<br>
+        GPU Modules: 100,000<br>
+        VRAM: 10 TB HBM2<br>
+        System Memory: 1 PB DDR8<br>
+        Relative Size: 100 × RTU‑11090ZTZ footprint<br>
+        Cooling: 224 mm fans @ 12000 RPM + multi‑loop water + vapor‑plate frame<br>
+        Power Draw: 50–80 kW (facility‑scale load)<br>
+        Socket: ZLLKX99K‑D (DESTROYER‑grade)<br>
+        Manufacturing Cost: ≈ $1.1B<br>
+        Scheduled Release: 2041<br>
+        Status: Internal catastrophic‑tier hardware
+      </div>
+    </div>
+  </article>
+
+  <article class="card">
+    <div class="card-title">DESTROYER Operating Envelope</div>
+    <div class="card-body">
+      RTU‑DESTROYER‑100K requires dedicated facility infrastructure. It cannot operate inside standard ZegaMachine chassis or conventional datacenter racks.
+      <div class="spec">
+        Power Infrastructure: Dedicated multi‑phase feed + isolation<br>
+        Cooling Infrastructure: External coolant reservoir + industrial airflow<br>
+        Mounting: Multi‑point frame, anti‑twist bracing, vibration isolation<br>
+        Safety: Restricted lab access, automated thermal and power interlocks<br>
+        Integration: ZOS DESTROYER‑grade kernel and scheduler<br>
+        Intended Use: Planet‑scale AI, simulation, and VRAM‑only research workloads
+      </div>
+    </div>
+  </article>
+
+</div>
+
+</section>
+
+<!-- ARCHITECTURE --> <section id="architecture" class="section"> <h2 class="section-title">Experimental Architecture</h2> <p class="section-sub"> Internal notes on the unified VRAM‑only memory model, ZLLKX99K sockets, and DESTROYER‑grade ZLLKX99K‑D extensions. </p>
+
+<div class="grid grid-2">
+
+  <article class="card">
+    <div class="card-title">VRAM‑Only Memory Model</div>
+    <div class="card-body">
+      Z‑MEGA GPUs adopt a VRAM‑only memory model, where GPU VRAM becomes the primary system memory surface.
+      RTU‑class boards allocate a portion of VRAM as system memory, while DESTROYER‑class devices introduce petabyte‑scale external DDR8 for staging and orchestration.
+      <div class="spec">
+        Consumer Series: ZT‑2, ZT‑4, ZT‑6, ZT‑8<br>
+        Prototype: ZT‑8‑200 (VRAM‑only extension)<br>
+        RTU VRAM Split: 10% system / 90% compute (RTU‑11090ZTZ)<br>
+        DESTROYER Memory: 10 TB HBM2 + 1 PB DDR8<br>
+        Requirement: Z‑series CPUs or ZegaMachine with ZLLKX99K / ZLLKX99K‑D
+      </div>
+    </div>
+  </article>
+
+  <article class="card">
+    <div class="card-title">ZLLKX99K & ZLLKX99K‑D</div>
+    <div class="card-body">
+      All RTU prototypes use the fragile, self‑cooling ZLLKX99K unified compute socket. DESTROYER‑grade hardware extends this to ZLLKX99K‑D,
+      adding structural reinforcement and extended memory fabric for PB‑scale addressing.
+      <div class="spec">
+        Structural Plates: 0.3 mm long, 2 nm thick<br>
+        Cooling: Integrated vapor channels and micro‑chambers<br>
+        ZLLKX99K: RTU‑class and ZT‑series compatibility<br>
+        ZLLKX99K‑D: DESTROYER‑class reinforcement & extended fabric<br>
+        Requirement: Dedicated bracing and alignment clamps
+      </div>
+    </div>
+  </article>
+
+</div>
+
+</section>
+
+<!-- ROADMAP --> <section id="roadmap" class="section"> <h2 class="section-title">Internal GPU Roadmap</h2> <p class="section-sub"> Projected development path for Z‑MEGA GPUs, from consumer‑level designs up through RTU and DESTROYER‑class compute slabs. </p>
+
+<div class="grid grid-3">
+
+  <article class="card">
+    <div class="card-title">ZT‑Series Evolution</div>
+    <div class="card-body">
+      From ZT‑2 office‑class GPUs through ZT‑4, ZT‑6, and ZT‑8 high‑end designs, the ZT‑series provides the foundation for RTU and DESTROYER architectures.
+      <div class="spec">
+        Consumer Range: ZT‑2 → ZT‑4 → ZT‑6 → ZT‑8<br>
+        Focus: VRAM‑only architecture, efficiency by era, OS integration
+      </div>
+    </div>
+  </article>
+
+  <article class="card">
+    <div class="card-title">RTU‑Class Path</div>
+    <div class="card-body">
+      RTU hardware formalizes unstable, lab‑only boards like RTU‑11090ZTZ, bridging the gap between advanced prototypes and DESTROYER‑class compute.
+      <div class="spec">
+        Example: RTU‑11090ZTZ<br>
+        Role: High‑risk experimentation, extreme VRAM density, socket stress‑testing<br>
+        Availability: Internal labs only
+      </div>
+    </div>
+  </article>
+
+  <article class="card">
+    <div class="card-title">DESTROYER‑Class Horizon</div>
+    <div class="card-body">
+      RTU‑DESTROYER‑100K, scheduled for 2041, defines the catastrophic‑tier horizon for Z‑MEGA.
+      It collapses entire datacenter fleets into one logical device and requires dedicated facility‑level infrastructure.
+      <div class="spec">
+        Flagship: RTU‑DESTROYER‑100K<br>
+        Release Target: 2041<br>
+        Role: Planet‑scale AI, simulation, and VRAM‑only research<br>
+        Access: Restricted internal engineering teams
+      </div>
+    </div>
+  </article>
+
+</div>
+
+</section>
+
+<footer> <div>© <span id="year"></span> Z‑MEGA • GPU Prerelease & RTU Lab</div> <div class="footer-links"> <a href="#prototypes">Prototypes</a> <a href="#rtu">RTU Hardware</a> <a href="#destroyer">DESTROYER</a> <a href="#architecture">Architecture</a> <a href="#roadmap">Roadmap</a> </div> </footer>
+
+</div>
+
+<script> document.getElementById("year").textContent = new Date().getFullYear(); </script>
+
+</body> </html>

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Z‑TEAM • Unified Future‑Tech Group</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Z‑TEAM is the unified technology group behind ZEGA (software) and Z‑MEGA (graphics hardware). Future‑forward engineering, clear design, and accessible tools." />
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --accent: #58f01b;
+      --accent-soft: rgba(88, 240, 27, 0.12);
+      --bg: #0b0e14;
+      --bg-panel: #11151f;
+      --bg-soft: #161b27;
+      --text: #e8ecf7;
+      --text-muted: #9aa3b8;
+      --radius: 14px;
+      --radius-sm: 10px;
+      --shadow: 0 14px 32px rgba(0,0,0,0.55);
+      --border: rgba(255,255,255,0.06);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Inter", sans-serif;
+      background: radial-gradient(circle at top, #1a2235 0%, #0b0e14 60%);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(14px);
+      background: rgba(11,14,20,0.85);
+      border-bottom: 1px solid var(--border);
+      z-index: 20;
+    }
+
+    .nav {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      background: radial-gradient(circle at 30% 20%, #b6ff87, #58f01b 40%, #1b7921 80%);
+      box-shadow: 0 0 18px rgba(88,240,27,0.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      color: #0b0e14;
+      font-size: 18px;
+    }
+
+    .brand-text {
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      font-size: 14px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    .btn {
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 500;
+      transition: 0.2s ease;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #0b0e14;
+      box-shadow: 0 0 18px rgba(88,240,27,0.4);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 0 26px rgba(88,240,27,0.55);
+    }
+
+    .shell {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 40px 18px 80px;
+    }
+
+    /* HERO */
+    .hero {
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .hero-title {
+      font-size: clamp(34px, 4vw, 48px);
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .hero-highlight {
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      font-size: 16px;
+      color: var(--text-muted);
+      max-width: 620px;
+      margin: 0 auto 28px;
+    }
+
+    /* COMPANY GRID */
+    .company-grid {
+      margin-top: 40px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .company-card {
+      background: var(--bg-panel);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      padding: 24px;
+      box-shadow: var(--shadow);
+      text-align: left;
+    }
+
+    .company-title {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .company-body {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .company-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      margin-top: 60px;
+      padding-top: 18px;
+      font-size: 12px;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 800px) {
+      .company-grid {
+        grid-template-columns: 1fr;
+      }
+      .nav-links {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="brand">
+      <div class="brand-mark">Z</div>
+      <div class="brand-text">Z‑TEAM</div>
+    </div>
+
+ <nav class="nav-links">
+  <a href="companies/zega/zega.html">ZEGA</a>
+  <a href="companies/z-mega/z-mega.html">Z‑MEGA</a>
+  <a href="companies/zega/os/zos.html">ZOS</a>
+</nav>
+
+    <button class="btn btn-primary">Contact</button>
+  </div>
+</header>
+
+<div class="shell">
+
+  <!-- HERO -->
+  <section class="hero">
+    <h1 class="hero-title">
+      The unified group behind <span class="hero-highlight">ZEGA</span> and <span class="hero-highlight">Z‑MEGA</span>.
+    </h1>
+    <p class="hero-sub">
+      Z‑TEAM builds future‑forward software and hardware ecosystems.  
+      ZEGA delivers the full software stack.  
+      Z‑MEGA engineers high‑performance graphics cards.  
+      Together, they form a complete technology platform.
+    </p>
+  </section>
+
+  <!-- COMPANIES -->
+  <section id="companies" class="company-grid">
+
+    <div class="company-card">
+      <h2 class="company-title">ZEGA</h2>
+      <p class="company-body">
+        ZEGA develops everything except graphics cards: operating systems, tools, compilers, CPUs, cloud systems, simulation engines, and full creator‑focused environments.
+      </p>
+      <div class="company-actions">
+        <button class="btn btn-primary">Visit ZEGA</button>
+        <button class="btn" style="background:var(--bg-soft);border:1px solid var(--border);color:var(--text-muted);">
+          Docs
+        </button>
+      </div>
+    </div>
+
+    <div class="company-card">
+      <h2 class="company-title">Z‑MEGA</h2>
+      <p class="company-body">
+        Z‑MEGA focuses exclusively on graphics hardware: GPUs, compute accelerators, firmware, drivers, and high‑performance rendering pipelines.
+      </p>
+      <div class="company-actions">
+        <button class="btn btn-primary">Visit Z‑MEGA</button>
+        <button class="btn" style="background:var(--bg-soft);border:1px solid var(--border);color:var(--text-muted);">
+          Specs
+        </button>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div>© <span id="year"></span> Z‑TEAM • Unified Future‑Tech Group</div>
+    <div style="display:flex;gap:14px;">
+      <a href="#companies">Companies</a>
+      <a href="#mission">Mission</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
